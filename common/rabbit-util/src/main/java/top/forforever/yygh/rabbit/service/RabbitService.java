@@ -1,0 +1,24 @@
+package top.forforever.yygh.rabbit.service;
+
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @create: 2023/3/23
+ * @Description:
+ * @FileName: RabbitService
+ * @自定义内容：
+ */
+@Service
+public class RabbitService {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    public boolean sendMessage(String exchange,String routingKey,Object message){
+        rabbitTemplate.convertAndSend(exchange,routingKey,message);
+        return true;
+    }
+
+}
